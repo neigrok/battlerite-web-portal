@@ -1,0 +1,31 @@
+{% block content %}
+<div class="article-row-section">
+  <div class="article-row-section-inner">
+  <h2 class="article-row-section-header">Новости</h2>
+    {% for news_item in news_list %}
+          <article class="article-row {% if forloop.counter|divisibleby:2%}article-row-reversed{% endif %}">
+                <div class="article-row-img">
+                    <a href="{% url 'news:news_details' news_item.slug %}">
+                        <img src="{{ news_item.image.url }}" alt="{{ news_item.title|add:'_img' }}" />
+                    </a>
+                </div>
+                <div class="article-row-content">
+                    <a href="{% url 'news:news_details' news_item.slug %}">
+                        <h1 class="article-row-content-header">{{ news_item.title }}</h1>
+                    </a>
+                    <p class="article-row-content-description">{{ news_item.text|slice:":250" }}</p>
+                    <p>
+                        <i class="fi-like" style="color:#66CC66; font-size: 200%"> {{ news_item.likes }}  </i>
+                        <i class="fi-dislike" style="color:#CC6666; font-size: 200%"> {{ news_item.dislikes }}</i>
+                    </p>
+                </div>
+          </article>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+
+
+
+

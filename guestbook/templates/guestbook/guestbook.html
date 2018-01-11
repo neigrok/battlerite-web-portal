@@ -1,0 +1,18 @@
+{% block guestbook %}
+<div class="cell medium-4 medium-cell-block-y">
+<h3>Гостевая книга</h3>
+    {% for comment in comment_list %}
+        <p>
+            {{ comment.author }} <small>{{ comment.timestamp }}:</small><br>
+            {{ comment.text }}
+        </p>
+        <hr>
+    {% endfor %}
+<form method="post" action="{% url 'guestbook:add' %}">
+    {% csrf_token %}
+    {{ guestbook_form }}
+    <input type="submit"  value="Отправить">
+</form>
+
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>Guides</h1>
+    {% for guide in object_list %}
+        <a href="{% url 'guides:details' guide.pk %}">
+            <h4>{{ guide.name }}</h4>
+        </a>
+        <small>{{ guide.timestamp }}</small>
+        <p>{{ guide.desc }}</p>
+        {% for card in guide.card_imgs %}
+                <img src=" {{ card.picture.url }}" alt="{{ card.name }}" />
+        {% endfor %}
+    {% endfor %}
+
+{% endblock %}

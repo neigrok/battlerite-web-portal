@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block additional_head %}
+    <link rel="stylesheet" href="{% static 'article_row.css' %}">
+    <link rel="stylesheet" href="{% static 'foundation-icons/foundation-icons.css' %}">
+{% endblock %}
+
+{% block content %}
+    {% include 'news_raw.html' %}
+{% endblock %}
+
+
+
