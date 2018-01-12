@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>Герои</h1>
+    <br>
+    <h3>Ближний бой</h3>
+    <ul>
+        {% for hero in melee_heroes %}
+            <li><img src="{{ hero.portrait.url }}" alt="{{ hero.name }}" /></li>
+        {% endfor %}
+    </ul>
+
+    <h3>Дальний бой</h3>
+    <ul>
+        {% for hero in ranged_heroes %}
+            <li><img src="{{ hero.portrait.url }}" alt="{{ hero.name }}" /></li>
+        {% endfor %}
+    </ul>
+    <h3>Саппорты</h3>
+    <ul>
+        {% for hero in support_heroes %}
+            <li><img src="{{ hero.portrait.url }}" alt="{{ hero.name }}" /></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+

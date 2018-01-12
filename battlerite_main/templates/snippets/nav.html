@@ -1,7 +1,26 @@
-<nav class="hover-underline-menu" data-menu-underline-from-center>
-  <ul class="menu">
-      <li><a href="{% url "battlerite_main:home" %}">Главная</a></li>
-      <li><a href="{% url "news:news" %}">Новости</a></li>
-      <li><a href="{% url "guides:all" %}">Гайды</a></li>
-  </ul>
-</nav>
+<div data-sticky-container>
+  <div data-sticky data-options="marginTop:0;">
+    <div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
+      <button class="menu-icon" type="button" data-toggle="example-menu"></button>
+      <div class="title-bar-title">Menu</div>
+    </div>
+    <div class="top-bar" id="example-menu">
+      <ul class="vertical medium-horizontal dropdown menu" data-responsive-menu="accordion medium-dropdown">
+        <li class="menu-text">BATTLERITE</li>
+          <li><a href="{% url "battlerite_main:home" %}">Главная</a></li>
+        <li><a href="{% url "news:news" %}">Новости</a></li>
+          <li><a href="{% url "guides:all" %}">Гайды</a>
+              <ul class="menu vertical nested">
+                <li><a href="{% url "guides:heroes" %}">Герои</a></li>
+                <li><a href="{% url "guides:create" %}">Добавить</a></li>
+              </ul>
+          </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+
+
