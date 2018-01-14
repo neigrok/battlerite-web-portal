@@ -5,4 +5,5 @@ app_name = 'battlerite_main'
 
 urlpatterns = [
     path('', HomeTemplateView.as_view(), name='home'),
+
 ]

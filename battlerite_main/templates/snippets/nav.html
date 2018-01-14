@@ -8,13 +8,18 @@
       <ul class="vertical medium-horizontal dropdown menu" data-responsive-menu="accordion medium-dropdown">
         <li class="menu-text">BATTLERITE</li>
           <li><a href="{% url "battlerite_main:home" %}">Главная</a></li>
-        <li><a href="{% url "news:news" %}">Новости</a></li>
-          <li><a href="{% url "guides:all" %}">Гайды</a>
+            <li><a href="{% url "news:news" %}">Новости</a></li>
+            <li><a href="{% url "guides:all" %}">Гайды</a>
               <ul class="menu vertical nested">
                 <li><a href="{% url "guides:heroes" %}">Герои</a></li>
                 <li><a href="{% url "guides:create" %}">Добавить</a></li>
               </ul>
-          </li>
+            </li>
+          {% if user.is_authenticated %}
+              <li><a href="{% url "logout" %}">Выйти</a>
+          {% else %}
+              <li><a href="{% url "login" %}">Войти</a>
+          {% endif %}
       </ul>
     </div>
   </div>

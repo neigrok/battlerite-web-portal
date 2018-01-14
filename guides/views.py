@@ -1,3 +1,4 @@
+from battlerite import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView
 from django.views.generic.detail import DetailView
@@ -21,8 +22,9 @@ class GuideDetailView(DetailView):
     model = Guide
 
 
-class GuideCreateView(CreateView, LoginRequiredMixin):
+class GuideCreateView(LoginRequiredMixin, CreateView):
     model = Guide
+    login_url = f'/{settings.LOGIN_URL}' #fuck that
     fields = ['owner', 'name', 'desc', 'cards']
 
 

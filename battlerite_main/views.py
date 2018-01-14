@@ -3,6 +3,7 @@ from news.models import News
 from guestbook.models import Comment
 from guestbook.forms import CommentForm
 
+
 # Create your views here.
 class HomeTemplateView(TemplateView):
 
