@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'guestbook',
     'guides',
     'news',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -104,8 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOGIN_URL = 'login/'
-LOGOUT_URL = 'logout/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 

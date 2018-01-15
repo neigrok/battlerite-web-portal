@@ -14,7 +14,6 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import include, path
 from django.conf.urls.static import static
 
@@ -23,8 +22,7 @@ from battlerite import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(settings.LOGIN_URL, LoginView.as_view(), name='login'),
-    path(settings.LOGOUT_URL, LogoutView.as_view(), name='logout'),
+    path('users/',  include('users.urls', namespace='users')),
     path('',  include('battlerite_main.urls', namespace='battlerite_main')),
     path('guestbook/', include('guestbook.urls', namespace='guestbook')),
     path('guides/',  include('guides.urls', namespace='guides')),
