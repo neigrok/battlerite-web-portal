@@ -5,12 +5,18 @@
     <p>email: {{ user.email }}</p>
     <p><a href="#">Reset password</a></p>
     <p>liked guides:</p>
+        {% for guide in user.likes.all %}
+            <ul>
+            <li><a href="{% url 'guides:heroes' %}"><img src="{{ guide.owner.portrait.url }}" alt="for {{ hero.name }}" /> </a>
+                <a href="{{ guide.get_absolute_url }}">{{ guide.name }}</a></li>
+            </ul>
+        {% endfor %}
     <p>my guides:</p>
-        {% for guide in user.guide_set.all %}
-        <ul>
-        <li><a href="{% url 'guides:heroes' %}"><img src="{{ guide.owner.portrait.url }}" alt="for {{ hero.name }}" /> </a>
-            <a href="{{ guide.get_absolute_url }}">{{ guide.name }}</a></li>
-        </ul>
+        {% for guide in user.author.all %}
+            <ul>
+            <li><a href="{% url 'guides:heroes' %}"><img src="{{ guide.owner.portrait.url }}" alt="for {{ hero.name }}" /> </a>
+                <a href="{{ guide.get_absolute_url }}">{{ guide.name }}</a></li>
+            </ul>
         {% endfor %}
 
 {% endblock %}
