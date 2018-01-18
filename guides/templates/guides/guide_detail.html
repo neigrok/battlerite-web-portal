@@ -2,5 +2,24 @@
 
 {% block content %}
     {{ object.name }} <br>
-    {{ object.desc }}
+    {{ object.desc }} <br>
+
+    <button id="like"  class="button success">Likes : {{ object.likes.all|length }}</button>
+
+
+
+{% endblock %}
+
+{% block extra_js %}
+        <script>
+        $('#like').click(function () {
+            $.ajax({
+              method: "get",
+              url: "{% url 'guides:like' object.pk %}"
+            })
+              .done(function(data) {
+                $('#like').text('Likes : ' + data['likes']);
+              });
+        })
+    </script>
 {% endblock %}

@@ -9,12 +9,11 @@ from .hero import Hero
 # Create your models here.
 class Guide(models.Model):
     owner = models.ForeignKey(Hero, on_delete=models.CASCADE)
-    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='author')
     name = models.CharField(max_length=120)
     desc = models.TextField()
     cards = models.ManyToManyField(Card)
-    likes = models.ManyToManyField(User)
-    dislikes = models.ManyToManyField(User)
+    likes = models.ManyToManyField(User, related_name='likes')
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def get_absolute_url(self):
