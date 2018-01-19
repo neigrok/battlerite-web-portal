@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ object.name }}</h1> <img src="{{ object.portrait.url }}" alt=""/><br>
+    <h4>{{ object.get_role_display }}</h4>
+    <hr>
+    <p>{{ object.lore }}</p>
+{% endblock %}

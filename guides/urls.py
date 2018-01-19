@@ -4,6 +4,7 @@ from .views import (
     GuideDetailView,
     GuideListView,
     HeroListView,
+    HeroDetailView,
     GuideLike,
 
 )
@@ -15,6 +16,7 @@ urlpatterns = [
     path('<int:pk>/', GuideDetailView.as_view(), name='details'),
     path('<int:pk>/like/', GuideLike.as_view(), name='like'),
     path('heroes/', HeroListView.as_view(), name='heroes'),
+    path('heroes/<slug:slug>/', HeroDetailView.as_view(), name='hero_details'),
     path('', GuideListView.as_view(), name='all'),
 
 ]

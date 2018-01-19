@@ -7,20 +7,26 @@
     <h3>Ближний бой</h3>
     <ul>
         {% for hero in melee_heroes %}
-            <li><img src="{{ hero.portrait.url }}" alt="{{ hero.name }}" /></li>
+            <a href="{% url 'guides:hero_details' hero.slug %}">
+                <li><img src="{{ hero.portrait.url }}" alt="{{ hero.name }}" /></li>
+            </a>
         {% endfor %}
     </ul>
 
     <h3>Дальний бой</h3>
     <ul>
         {% for hero in ranged_heroes %}
-            <li><img src="{{ hero.portrait.url }}" alt="{{ hero.name }}" /></li>
+            <a href="{% url 'guides:hero_details' hero.slug %}">
+                <li><img src="{{ hero.portrait.url }}" alt="{{ hero.name }}" /></li>
+            </a>
         {% endfor %}
     </ul>
     <h3>Саппорты</h3>
     <ul>
         {% for hero in support_heroes %}
-            <li><img src="{{ hero.portrait.url }}" alt="{{ hero.name }}" /></li>
+            <a href="{% url 'guides:hero_details' hero.slug %}">
+                <li><img src="{{ hero.portrait.url }}" alt="{{ hero.name }}" /></li>
+            </a>
         {% endfor %}
     </ul>
 {% endblock %}

@@ -3,6 +3,7 @@ from django.db.models.signals import pre_save
 from django.utils.text import slugify
 from battlerite import settings
 
+import cyrtranslit
 
 # Create your models here.
 class News(models.Model):
@@ -16,12 +17,16 @@ class News(models.Model):
     slug = models.SlugField(unique=True)
     #add tags
 
+    class Meta:
+        ordering = ['-timestamp', '-updated']
+
     def __str__(self):
         return self.title
 
 
 def toppings_changed(sender, instance, **kwargs):
-    instance.slug = slugify(instance.title, allow_unicode=True) + '-' + str(instance.pk)
+    transit_title = cyrtranslit.to_latin(instance.title, 'ru')
+    instance.slug = slugify(transit_title, allow_unicode=True) + '-' + str(instance.pk)
 
 
 pre_save.connect(toppings_changed, sender=News)

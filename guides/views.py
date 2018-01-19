@@ -62,3 +62,7 @@ class HeroListView(ListView):
         return context
 
 
+class HeroDetailView(DetailView):
+    model = Hero
+
+
