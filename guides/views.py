@@ -1,4 +1,5 @@
 from django.urls import reverse_lazy
+from django.core.paginator import Paginator
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView
 from django.views.generic.detail import DetailView
@@ -15,9 +16,11 @@ class GuideListView(ListView):
     model = Guide
 
     def get_context_data(self, **kwargs):
+        page = self.request.GET.get('page', 1)
+        paginator = Paginator(Guide.objects.all(), 15)
+
         context = super().get_context_data(**kwargs)
-        for guide in context['object_list']:
-            guide.card_imgs = guide.cards.all()
+        context['guide_list'] = paginator.get_page(page)
 
         return context
 
@@ -41,7 +44,7 @@ class GuideLike(APIView):
         guide = Guide.objects.filter(pk=pk).first()
         data = {"likes": None}
 
-        if user.is_authenticated and guide is not None:
+        if guide is not None:
             if user in guide.likes.all():
                 guide.likes.remove(user)
             else:

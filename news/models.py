@@ -5,6 +5,7 @@ from battlerite import settings
 
 import cyrtranslit
 
+
 # Create your models here.
 class News(models.Model):
     title = models.CharField(max_length=120)
@@ -15,7 +16,6 @@ class News(models.Model):
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     slug = models.SlugField(unique=True)
-    #add tags
 
     class Meta:
         ordering = ['-timestamp', '-updated']
@@ -24,9 +24,9 @@ class News(models.Model):
         return self.title
 
 
-def toppings_changed(sender, instance, **kwargs):
-    transit_title = cyrtranslit.to_latin(instance.title, 'ru')
-    instance.slug = slugify(transit_title, allow_unicode=True) + '-' + str(instance.pk)
+def slug_for_news(sender, instance, **kwargs):
+    translit_title = cyrtranslit.to_latin(instance.title, 'ru')
+    instance.slug = slugify(translit_title, allow_unicode=True) + '-' + str(instance.pk)
 
 
-pre_save.connect(toppings_changed, sender=News)
+pre_save.connect(slug_for_news, sender=News)

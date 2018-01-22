@@ -15,6 +15,10 @@ class Guide(models.Model):
     cards = models.ManyToManyField(Card)
     likes = models.ManyToManyField(User, related_name='likes')
     timestamp = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-timestamp', '-updated']
 
     def get_absolute_url(self):
         return reverse('guides:details', kwargs={'pk': self.pk})
