@@ -7,6 +7,10 @@ import cyrtranslit
 
 
 # Create your models here.
+class Tag(models.Model):
+    name = models.CharField(max_length=20)
+    
+
 class News(models.Model):
     title = models.CharField(max_length=120)
     text = models.TextField()
@@ -16,6 +20,7 @@ class News(models.Model):
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     slug = models.SlugField(unique=True)
+    tags = models.ManyToManyField(Tag)
 
     class Meta:
         ordering = ['-timestamp', '-updated']
@@ -30,3 +35,6 @@ def slug_for_news(sender, instance, **kwargs):
 
 
 pre_save.connect(slug_for_news, sender=News)
+
+
+
